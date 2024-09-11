@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "1020071945535",
+    "project_id": "youeat-97a4b",
+    "storage_bucket": "youeat-97a4b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1020071945535:android:b828eb330e38a448c6df8a",
+        "android_client_info": {
+          "package_name": "com.example.youeat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1020071945535-13n7tbc7krbhloeita9qsaludtseu84l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3fvvkgm5BAT1pyVYtJe9gK1WzM9jGZVk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1020071945535-13n7tbc7krbhloeita9qsaludtseu84l.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1020071945535-liouq27ru5scojuct5f849fbjil777rs.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.youeat"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1020071945535:android:1ea4290d017d170ec6df8a",
+        "android_client_info": {
+          "package_name": "com.youeat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1020071945535-13n7tbc7krbhloeita9qsaludtseu84l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3fvvkgm5BAT1pyVYtJe9gK1WzM9jGZVk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1020071945535-13n7tbc7krbhloeita9qsaludtseu84l.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1020071945535-liouq27ru5scojuct5f849fbjil777rs.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.youeat"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
