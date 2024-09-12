@@ -76,7 +76,7 @@ class _OrderPageState extends State<OrderPage> {
                       SizedBox(
                         height: 5.h,
                       ),
-                      // RowText(first: "Hours", second: widget.restaurant!.time),
+                      RowText(first: "Hours", second: widget.restaurant!.time),
                       SizedBox(
                         height: 5.h,
                       ),
@@ -121,7 +121,7 @@ class _OrderPageState extends State<OrderPage> {
                                     child: ReusableText(
                                         text: additive,
                                         style: appStyle(
-                                            8, kGray, FontWeight.w400)),
+                                            10, kGray, FontWeight.w400)),
                                   ),
                                 ),
                               );
