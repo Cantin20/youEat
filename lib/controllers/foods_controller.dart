@@ -42,6 +42,20 @@ class FoodController extends GetxController {
     }
   }
 
+  List<String> getCartAdditive() {
+    List<String> additives = [];
+
+    for (var additive in additivesList) {
+      if (additive.isChecked.value && !additives.contains(additive.title)) {
+        additives.add(additive.title);
+      } else if (!additive.isChecked.value &&
+          additives.contains(additive.title)) {
+        additives.remove(additive.title);
+      }
+    }
+    return additives;
+  }
+
   RxInt _totalPrice = 0.obs; // Changed to RxInt
 
   int get additivePrice => _totalPrice.value;
@@ -56,7 +70,7 @@ class FoodController extends GetxController {
     for (var additive in additivesList) {
       if (additive.isChecked.value) {
         // Convert price to int using tryParse or handle as 0 if conversion fails
-        totalPrice += (int.tryParse(additive.price.toString()) ?? 0); 
+        totalPrice += (int.tryParse(additive.price.toString()) ?? 0);
       }
     }
     setTotalPrice = totalPrice;

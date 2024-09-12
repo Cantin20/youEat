@@ -53,16 +53,16 @@ class CartContrller extends GetxController {
     } catch (e) {
       debugPrint(e.toString());
     } finally {
-      setLoading = false; 
+      setLoading = false;
     }
   }
 
-  void removeFromCart(String productId) async {
+  void removeFromCart(String productId, Function refetch) async {
     setLoading = true;
 
     String accessToken = box.read("token");
 
-    var url = Uri.parse("$appBaseUrl/api/cart/delete/$productId");
+    var url = Uri.parse("$appBaseUrl/api/cart/$productId");
 
     Map<String, String> headers = {
       'Content-Type': 'application/json',
@@ -70,12 +70,14 @@ class CartContrller extends GetxController {
     };
 
     try {
-      var response = await http.delete(url, headers: headers, );
+      var response = await http.delete(
+        url,
+        headers: headers,
+      );
 
       if (response.statusCode == 200) {
         setLoading = false;
-
-
+        refetch();
 
         Get.snackbar("Product removed", "Enjoy !!",
             colorText: kLightWhite,
@@ -97,7 +99,7 @@ class CartContrller extends GetxController {
     } catch (e) {
       debugPrint(e.toString());
     } finally {
-      setLoading = false; 
+      setLoading = false;
     }
   }
 }

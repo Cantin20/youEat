@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:youeat/models/hook_models/restaurant_hook.dart';
 import 'package:youeat/models/restaurant_model.dart';
 
-FetchRestaurant useFetchRestaurant(String code) {
+FetchRestaurant useFetchRestaurant(String id) {
   final restaurants = useState<RestaurantsModel?>(null);
   final isLoading = useState<bool>(false);
   final error = useState<Exception?>(null);
@@ -18,9 +18,12 @@ FetchRestaurant useFetchRestaurant(String code) {
     isLoading.value = true;
 
     try {
+      
       Uri url = Uri.parse(
-          '$appBaseUrl/api/restaurant/byId/$code'); // Update the URL if needed
+          '$appBaseUrl/api/restaurant/byId/$id'); // Update the URL if needed
+
       final response = await http.get(url);
+
       if (response.statusCode == 200) {
         var restaurant = jsonDecode(response.body);
         restaurants.value = RestaurantsModel.fromJson(restaurant);

@@ -11,13 +11,18 @@ import 'package:youeat/common/custom_buttom.dart';
 import 'package:youeat/common/custom_text_field.dart';
 import 'package:youeat/common/reusable_text.dart';
 import 'package:youeat/constants/constants.dart';
+import 'package:youeat/controllers/cart_controller.dart';
 import 'package:youeat/controllers/foods_controller.dart';
 import 'package:youeat/controllers/login_controller.dart';
 import 'package:youeat/hooks/fetch_restaurant.dart';
+import 'package:youeat/models/cart_request.dart';
 import 'package:youeat/models/foods_model.dart';
 import 'package:youeat/models/login_response.dart';
+import 'package:youeat/models/order_request.dart';
+import 'package:youeat/models/restaurant_model.dart';
 import 'package:youeat/views/auth/phone_verication_page.dart';
 import 'package:youeat/views/login/login_redirect.dart';
+import 'package:youeat/views/order/order_page.dart';
 import 'package:youeat/views/restaurants/restaurant_page.dart';
 
 class FoodPage extends StatefulHookWidget {
@@ -35,8 +40,10 @@ class _FoodPageState extends State<FoodPage> {
 
   @override
   Widget build(BuildContext context) {
+    final cartController = Get.put(CartContrller());
     LoginResponse? user;
     final hookResult = useFetchRestaurant(widget.food.restaurant);
+    RestaurantsModel? restaurant = hookResult.data;
     final controller = Get.put(FoodController());
     final loginController = Get.put(LoginController());
     user = loginController.getUserInfo();
@@ -141,7 +148,7 @@ class _FoodPageState extends State<FoodPage> {
                     Obx(
                       () => ReusableText(
                           text:
-                              " ${widget.food.price + controller.additivePrice * controller.count.value} FCFA",
+                              " ${(widget.food.price + controller.additivePrice) * controller.count.value} FCFA",
                           style: appStyle(18, kPrimary, FontWeight.w500)),
                     )
                   ],
@@ -221,6 +228,7 @@ class _FoodPageState extends State<FoodPage> {
                           onChanged: (bool? value) {
                             additive.toggleChecked();
                             controller.getTotalPrice();
+                            controller.getCartAdditive();
                           });
                     }),
                   ),
@@ -299,8 +307,29 @@ class _FoodPageState extends State<FoodPage> {
                           } else if (user.phoneVerification == false) {
                             //print("Place Order");
                             showVerificationSheet(context);
-                          } else {
-                            print("Place Order");
+                          }
+                          {
+                            double price =
+                                (widget.food.price + controller.additivePrice) *
+                                    controller.count.value;
+
+                            OrderItem item = OrderItem(
+                                foodId: widget.food.id,
+                                quantity: controller.count.value,
+                                price: price,
+                                additives: controller.getCartAdditive(),
+                                instructions: _preferences.text);
+
+                            //Create OrderItem
+
+                            Get.to(
+                                () => OrderPage(
+                                      item: item,
+                                      restaurant: restaurant,
+                                      food: widget.food,
+                                    ),
+                                transition: Transition.cupertino,
+                                duration: Duration(milliseconds: 900));
                           }
                         },
                         child: Padding(
@@ -312,7 +341,20 @@ class _FoodPageState extends State<FoodPage> {
                         ),
                       ),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          double price =
+                              (widget.food.price + controller.additivePrice) *
+                                  controller.count.value;
+                          var data = CartModel(
+                              productId: widget.food.id,
+                              additives: controller.getCartAdditive(),
+                              quantity: controller.count.value,
+                              totalPrice: price);
+
+                          String cart = cartModelToJson(data);
+
+                          cartController.addToCart(cart);
+                        },
                         child: CircleAvatar(
                           backgroundColor: kSecondary,
                           radius: 20.r,

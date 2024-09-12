@@ -69,7 +69,7 @@ List<dynamic> categories = [
 
 List<dynamic> restaurants = [
   {
-    "_id": "6530ebbcc9e72013e5b65933",
+    "_id": "66abc9634705a60d2ea9ab0c",
     "title": "Lapisara Eatery",
     "time": "6:00am - 9:00pm",
     "imageUrl":
@@ -91,7 +91,7 @@ List<dynamic> restaurants = [
     }
   },
   {
-    "_id": "6530ea6bc9e72013e5b6592d",
+    "_id": "66abcaae4705a60d2ea9ab0e",
     "title": "AWAE King",
     "time": "6:00am - 9:00pm",
     "imageUrl":
@@ -113,7 +113,7 @@ List<dynamic> restaurants = [
     }
   },
   {
-    "_id": "6530eb66c9e72013e5b65931",
+    "_id": "66abcb394705a60d2ea9ab10",
     "title": "KMER Foods",
     "time": "6:00am - 9:00pm",
     "imageUrl":
@@ -135,7 +135,7 @@ List<dynamic> restaurants = [
     }
   },
   {
-    "_id": "6530eb23c9e72013e5b6592f",
+    "_id": "66abcbee4705a60d2ea9ab14",
     "title": "MaMa Africa ",
     "time": "6:00am - 9:00pm",
     "imageUrl":

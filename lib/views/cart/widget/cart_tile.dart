@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:get/get.dart';
 import 'package:youeat/common/app_style.dart';
 import 'package:youeat/common/reusable_text.dart';
 import 'package:youeat/constants/constants.dart';
+import 'package:youeat/controllers/cart_controller.dart';
 import 'package:youeat/models/cart_response.dart';
 
 class CartTile extends StatelessWidget {
@@ -15,6 +17,7 @@ class CartTile extends StatelessWidget {
   final Function()? refetch;
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(CartContrller());
     return GestureDetector(
       onTap: () {
         //Get.to(() => FoodPage(food: food));
@@ -135,7 +138,9 @@ class CartTile extends StatelessWidget {
             right: 75.w,
             top: 6.h,
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                controller.removeFromCart(cart.id, refetch!);
+              },
               child: Container(
                 width: 19.w,
                 height: 19.h,

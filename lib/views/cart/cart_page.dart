@@ -69,6 +69,7 @@ class CartPage extends HookWidget {
                         itemBuilder: (context, i) {
                           var cart = carts[i];
                           return CartTile(
+                            refetch: refetch,
                             color: kLightWhite,
                             cart: cart);
                         }),
